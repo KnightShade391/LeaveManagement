@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+    <title>Profile</title>
+
+    <style>
+        
+        #hod{
+            margin-top: 2%;
+            padding: 3%;
+            padding-top: 2px;
+        }
+
+        .profile-table{
+            padding: 5%;
+            padding-bottom: 0;
+            font-size: 18px;
+        }
+
+        .tabs .indicator{
+            background-color: #1a237e;
+        }
+        .tabs .tab a:focus, .tabs .tab a:focus.active{
+            background-color: transparent;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <nav class="nav-wrapper indigo">
+            <div class="container">
+                <a href="#" class="brand-logo hide-on-small-only">Leave Management</a>
+                <a href="#" class="brand-logo hide-on-med-and-up">MENU</a>
+                <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/profile/requests">Leave requests</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                <ul class="sidenav grey lighten-2" id="mobile-menu">
+                    <li><a href="/profile/requests">Leave requests</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container z-depth-2" id="hod">
+        <div class="row">
+            <ul class="tabs">
+                <li class="tab col s4">
+                    <a href="#requests" class="indigo-text text darken-4">Requests</a>
+                </li>
+                <li class="tab col s4">
+                    <a href="#approved" class="indigo-text text darken-4">Approved</a>
+                </li>
+                <li class="tab col s4">
+                    <a href="#declined" class="indigo-text text darken-4">Declined</a>
+                </li>
+            </ul>
+            <div class="col s12" id="requests">
+                <table class="striped centered responsive-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Leave type</th>
+                        <th>Leave date</th>
+                        <th>Duration</th>
+                        <th>From</th>
+                        <th>Till (inclusive)</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% leaves.forEach(function(leave){ %>
+                            <% if(leave.status == "applied"){ %>
+                                <tr>
+                                    <td><%= leave.name %></td>
+                                    <% if(leave.ltype == "CL"){ %>
+                                        <td>CL</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.duration %></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    <% } else { %>
+                                        <td>EL</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.tdate %></td>
+                                    <% } %>
+                                    <td><a href="/profile/leaveDetails/<%= leave.lid %>" class="btn-floating waves-effect waves-light indigo darken-2"><i class="material-icons">more_horiz</i></a></td>
+                                </tr>
+                            <%} %>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12" id="approved">
+                <table class="striped centered responsive-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Leave type</th>
+                        <th>Leave date</th>
+                        <th>Duration</th>
+                        <th>From</th>
+                        <th>Till (inclusive)</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <% leaves.forEach(function(leave){ %>
+                            <% if(leave.status == "approved"){ %>
+                                <tr>
+                                    <td><%= leave.name %></td>
+                                    <% if(leave.ltype == "CL"){ %>
+                                        <td>CL</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.duration %></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    <% } else { %>
+                                        <td>EL</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.tdate %></td>
+                                    <% } %>
+                                </tr>
+                            <%} %>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col s12" id="declined">
+                <table class="striped centered responsive-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Leave type</th>
+                        <th>Leave date</th>
+                        <th>Duration</th>
+                        <th>From</th>
+                        <th>Till (inclusive)</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        <% leaves.forEach(function(leave){ %>
+                            <% if(leave.status == "declined"){ %>
+                                <tr>
+                                    <td><%= leave.name %></td>
+                                    <% if(leave.ltype == "CL"){ %>
+                                        <td>CL</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.duration %></td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    <% } else { %>
+                                        <td>EL</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td><%= leave.sdate %></td>
+                                        <td><%= leave.tdate %></td>
+                                    <% } %>
+                                </tr>
+                            <%} %>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../assets/materialize/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".tabs").tabs();
+            $(".sidenav").sidenav();
+        });
+    </script>
+</body>
+</html>

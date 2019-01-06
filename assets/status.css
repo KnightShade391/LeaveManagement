@@ -1,0 +1,288 @@
+body{
+    font-family:'Helvetica';
+    margin:0;
+    padding:0;
+}
+
+.bg{
+    background: #fc4a1a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f7b733, #fc4a1a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color:white;
+    opacity:0.95;
+}
+
+#heading{
+  background-color: #FFFFFF;
+  width: 600px;
+  height:70px;
+  margin:7em auto;
+  margin-bottom: 10px;
+  color: red;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 11px 35px 2px rgba(0,0,0,0.5);
+}
+
+#heading h1{
+  padding-top: 15px;
+}
+
+.num{
+  color: red;
+  display: block;
+  text-align: center;
+}
+
+.noLeaves{
+  background-color: #FFFFFF;
+  width: 600px;
+  height:70px;
+  margin:7em auto;
+  margin-bottom: 10px;
+  color: black;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 11px 35px 2px rgba(0,0,0,0.5);
+}
+
+.noLeaves h2{
+  padding-top: 15px;
+}
+
+.leaveStatus{
+  background-color: #222;
+  width: 600px;
+  height:70px;
+  margin:10px auto;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 11px 35px 2px rgba(0,0,0,0.5);
+  position: relative;
+}
+
+.leaveStatus h3{
+  padding-top: 15px;
+  margin-bottom: 5px;
+}
+
+.leaveStatus form{
+  padding: 0;
+}
+
+.leaveStatus button{
+  font-family: cursive;
+  padding: 5px;
+  background: #ccc;
+  color: #222;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 2px 2px 4px black;
+}
+
+.leaveStatus button:hover{
+  cursor: pointer;
+  background: #222;
+  color: #ccc;
+  box-shadow: 4px 4px 6px black;
+}
+
+table{
+    margin:10px;
+}
+
+.selectBody{
+    width:76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    text-align: center;
+    padding-right:10px;
+}
+
+
+.container{
+    background-color: #FFFFFF;
+    width: 600px;
+    height:400px;
+    margin:7em auto;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 11px 35px 2px rgba(0,0,0,0.5);
+}
+
+.element{
+    font-size:20px;
+    padding:15px;
+    color:black;
+}
+
+.formElement{
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+    text-align: center;
+    padding-right:10px;
+}
+
+.submitForm{
+    cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background: linear-gradient(to right, rgb(212, 11, 88), rgb(255, 135, 135));
+    border: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    margin-left: 35%;
+    font-size: 13px;
+    box-shadow: 0px 0px 25px 2px rgba(0, 0, 0, 0);
+}
+
+.submitForm:hover{
+box-shadow: 1px 1px 25px 2px rgba(0, 0, 0, 0.3);
+}
+
+.dateElement{
+    width: 76%;
+    color: rgb(38, 50, 56);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: rgba(136, 126, 126, 0.04);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0.02);
+
+}
+
+.elementContainer{
+    padding-top:10px;
+    padding-bottom:10px;
+
+}
+
+.nav{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+    background-color:#37474F;
+    position: fixed;
+    top:0;
+    z-index: 2;
+    width: 100%;
+}
+
+li{
+    float: left;
+}
+
+li div{
+    display: inline-block;
+    text-align: center;
+    padding:14px 16px;
+    cursor: pointer;
+    width:150px;
+}
+
+
+
+li div:hover{
+    background:#f9f9f9;
+    color:black;
+}
+
+.thisPage{
+    background:white;
+    color: black;
+}
+
+
+
+.logBtn:hover{
+    color:red;
+}
+
+.nav a{
+  text-decoration: none;
+  color: white;
+}
+
+
+form{
+    padding:10%;
+}
+
+@media (min-width: 780px){
+  .leaveStatus div{
+    width: 90%;
+    margin-right: 0;
+  }
+  .leaveStatus button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+
+    li{
+        width: 100%;
+        align-items: center;
+    }
+
+    li div{
+        float:none;
+        width: 100%;
+
+    }
+
+    .container { width:100%; }
+    #heading{
+      width: 100%;
+      margin-top: 50%;
+    }
+    .leaveStatus{
+      width: 100%;
+      height: 110px;
+    }
+    form{
+        padding:25px;
+    }
+
+    .element{
+        padding-left: 0px;
+        width:10%;
+        font-size: 15px;
+    }
+
+    .formElement{
+        width:100%;
+        font-size: 15px;
+    }
+
+}

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+    <title>Request leave</title>
+
+    <style>
+
+        #signup{
+            margin-top: 2%;
+            padding: 3%;
+            padding-top: 2px;
+        }
+
+        #cl, #el{
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+        <header>
+            <nav class="nav-wrapper indigo">
+                <div class="container">
+                    <a href="#" class="brand-logo hide-on-small-only">Leave Management</a>
+                    <a href="#" class="brand-logo hide-on-med-and-up">MENU</a>
+                    <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                        <i class="material-icons">menu</i>
+                    </a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/profile/leave">Request leave</a></li>
+                        <li><a href="/profile/status">Status</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/auth/logout">Logout</a></li>
+                    </ul>
+                    <ul class="sidenav grey lighten-2" id="mobile-menu">
+                        <li><a href="/profile/leave">Request leave</a></li>
+                        <li><a href="/profile/status">Status</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/auth/logout">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+    <div class="row">
+        <div class="col s12 m6 l6 offset-m3 offset-l3 z-depth-2" id="signup">
+            <h1 class="center indigo-text text-darken-2">Request leave</h1>
+            <div class="mainformdiv">
+                <form action="" id="mainform">
+                        <div class="input-field">
+                            <input type="text" name="name" value=<%= user.name %>>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="DName" value=<%= user.DName %>>
+                            <label for="DName">Department</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="leavetype" class="leavetype">
+                                <option disabled selected>Leave type</option>
+                                <option value="CL">CL</option>
+                                <option value="EL">EL</option>
+                            </select>
+                        </div>
+                        <div class="input-field center" id="next">
+                            <button class="btn waves-effect waves-light">Next</button>
+                        </div>
+                </form>
+
+                <!-- Cl form-->
+                <div id="cl">
+                    <form method="POST" action="/profile/apply/cl">
+                        <div class="input-field">
+                            <input type="text" name="ltype" value="CL">
+                            <label for="ltype">Leave type</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="clLeft" value=<%= user.cl %>>
+                            <label for="clLeft">CL left</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="sdate" id="date" class="datepicker">
+                            <label for="sdate">Leave date</label>
+                        </div>
+                        <div class="input-field">
+                            <select name="duration">
+                                <option disabled selected>Duration</option>
+                                <option value="full-day">Full day</option>
+                                <option value="morning">Morning</option>
+                                <option value="afternoon">Afternoon</option>
+                            </select>
+                        </div>
+                        <div class="input-field center">
+                            <button class="btn waves-effect waves-light">Submit</button>
+                        </div>
+                    </form>
+                    <div class="input-field back">
+                        <button class="btn waves-effect waves-light">Back</button>
+                    </div>
+                </div>
+                <!-- Cl form done-->
+
+                <!-- El form-->
+                <div id="el">
+                    <form method="POST" action="/profile/apply/el">
+                        <div class="input-field">
+                            <input type="text" name="ltype" value="EL">
+                            <label for="ltype">Leave type</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="elLeft" value=<%= user.el %>>
+                            <label for="elLeft">EL left</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="fdate" id="date" class="datepicker">
+                            <label for="fdate">From</label>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" name="tdate" id="date" class="datepicker">
+                            <label for="tdate">Till (inclusive)</label>
+                        </div>
+                        <div class="input-field center">
+                            <button class="btn waves-effect waves-light">Submit</button>
+                        </div>
+                    </form>
+                    <div class="input-field back">
+                        <button class="btn waves-effect waves-light">Back</button>
+                    </div>
+                </div>
+                <!-- El form done-->
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../assets/materialize/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".sidenav").sidenav();
+            $('select').formSelect();
+            $(".datepicker").datepicker({
+                disableDayFn: function(date) {
+                            if(date.getDay() == 0) // getDay() returns a value from 0 to 6, 1 represents Monday
+                                return true;
+                            else
+                                return false;
+                        },
+                format: 'yyyy-mm-dd'
+            });
+            $("#mainform").submit(function(e){
+                e.preventDefault();
+                var lt = $(".leavetype option:selected").text()
+                if(lt == "CL"){
+                    $("#mainform").css("display", "none");
+                    $("#cl").css("display", "block");
+                }
+                else if(lt == "EL"){
+                    $("#mainform").css("display", "none");
+                    $("#el").css("display", "block");
+                }
+            });
+            $(".back").click(function(){
+                $("#mainform").css("display", "block");
+                $("#cl").css("display", "none");
+                $("#el").css("display", "none");
+                $(".sidenav").sidenav();
+            });
+        });
+    </script>
+</body>
+</html>

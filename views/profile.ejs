@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="materialize/css/materialize.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/materialize/css/materialize.min.css">
+    <title>Profile</title>
+
+    <style>
+        
+        #profile{
+            margin-top: 2%;
+            padding: 3%;
+            padding-top: 2px;
+        }
+
+        .profile-table{
+            padding: 5%;
+            padding-bottom: 0;
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <nav class="nav-wrapper indigo">
+            <div class="container">
+                <a href="#" class="brand-logo hide-on-small-only">Leave Management</a>
+                <a href="#" class="brand-logo hide-on-med-and-up">MENU</a>
+                <a href="" class="sidenav-trigger" data-target="mobile-menu">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <% if(user.Desgn == "HOD"){ %>
+                        <li><a href="/profile/requests">Leave requests</a></li>
+                    <% }else{ %>
+                        <li><a href="/profile/leave">Request leave</a></li>
+                        <li><a href="/profile/status">Status</a></li>
+                    <% } %>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                <ul class="sidenav grey lighten-2" id="mobile-menu">
+                    <% if(user.Desgn == "HOD"){ %>
+                        <li><a href="/profile/requests">Leave requests</a></li>
+                    <% }else{ %>
+                        <li><a href="/profile/leave">Request leave</a></li>
+                        <li><a href="/profile/status">Status</a></li>
+                    <% } %>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container z-depth-2" id="profile">
+            <h1 class="center indigo-text text-darken-2">My profile</h1>
+        <div class="profile-table">
+            <table class="striped highlight centered">
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td><%= user.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Department</td>
+                    <td><%= user.DName %></td>
+                  </tr>
+                  <tr>
+                    <td>Designation</td>
+                    <td><%= user.Desgn %></td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td><%= user.email %></td>
+                  </tr>
+                  <% if(user.Desgn !== "HOD"){ %>
+                    <tr>
+                        <td>CL left</td>
+                        <td><%= user.cl %></td>
+                    </tr>
+                    <tr>
+                        <td>EL left</td>
+                        <td><%= user.el %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../assets/materialize/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".sidenav").sidenav();
+            $('select').formSelect();
+        });
+    </script>
+</body>
+</html>

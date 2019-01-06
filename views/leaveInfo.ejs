@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../assets/materialize/css/materialize.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/materialize/css/materialize.min.css">
+    <title>Profile</title>
+
+    <style>
+        
+        #leaveInfo{
+            margin-top: 2%;
+            padding: 3%;
+            padding-top: 2px;
+        }
+
+        .profile-table{
+            padding: 5%;
+            padding-bottom: 0;
+            font-size: 18px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <header>
+        <nav class="nav-wrapper indigo">
+            <div class="container">
+                <a href="#" class="brand-logo hide-on-small-only">Leave Management</a>
+                <a href="#" class="brand-logo hide-on-med-and-up">MENU</a>
+                <a class="sidenav-trigger" data-target="mobile-menu">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/profile/requests">Leave requests</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                <ul class="sidenav grey lighten-2" id="mobile-menu">
+                    <li><a href="/profile/requests">Leave requests</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container z-depth-2" id="leaveInfo">
+        <div class="profile-table">
+            <table class="striped highlight centered">
+                <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><%= leave.name %></td>
+                </tr>
+                <tr>
+                    <td>Department</td>
+                    <td><%= leave.DName %></td>
+                </tr>
+                <tr>
+                    <td>Designation</td>
+                    <td><%= leave.Desgn %></td>
+                </tr>
+                <% if(leave.ltype == "CL"){ %>
+                    <tr>
+                        <td>Leave type</td>
+                        <td>CL</td>
+                    </tr>
+                    <tr>
+                        <td>Leave date</td>
+                        <td><%= leave.sdate %></td>
+                    </tr>
+                    <tr>
+                        <td>Duration</td>
+                        <td><%= leave.duration %></td>
+                    </tr>
+                <% } else { %>
+                    <tr>
+                        <td>Leave type</td>
+                        <td>EL</td>
+                    </tr>
+                    <tr>
+                        <td>From</td>
+                        <td><%= leave.sdate %></td>
+                    </tr>
+                    <tr>
+                        <td>Till (inclusive)</td>
+                        <td><%= leave.tdate %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="center leaveEval">
+            <a href="/profile/accept/<%= leave.lid %>" style="margin-right: 10px; margin-top: 20px;" class="tooltipped btn-floating waves-effect waves-light" data-tooltip="Accept"><i class="material-icons">check</i></a>
+            <a href="/profile/decline/<%= leave.lid %>" style="margin-left: 10px; margin-top: 20px;" class="tooltipped btn-floating waves-effect waves-light red" data-tooltip="Reject"><i class="material-icons">close</i></a>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/materialize/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".tooltipped").tooltip();
+            $(".sidenav").sidenav();
+        });
+    </script>
+</body>
+</html>
